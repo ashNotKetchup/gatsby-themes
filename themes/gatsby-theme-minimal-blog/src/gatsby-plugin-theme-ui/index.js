@@ -1,20 +1,25 @@
 import { merge } from "theme-ui"
 import tailwind from "@theme-ui/preset-tailwind"
 import { lightThemeVars, darkThemeVars } from "../utils/prism-themes"
-import { colord } from "colord";
+import { colord, extend } from "colord";
+import a11yPlugin from "colord/plugins/a11y";
+import labPlugin from "colord/plugins/lab";
+import harmonies from "colord/plugins/harmonies";
 
-// linspace of hues
-var hues = [];
-for (var i = 0; i < 360; i+=2){
-    hues.push(i);
-}
+extend([a11yPlugin, labPlugin, harmonies]);
+
+// // linspace of hues, unused
+// var hues = [];
+// for (var i = 0; i < 360; i+=2){
+//     hues.push(i);
+// }
 
 var hueBackground = Math.floor(Math.random() * 360);
 var hueForeground = Math.floor(Math.random() * 360);
 
-const minHueContrast = 70
-
-if (Math.abs(hueBackground - hueForeground) < minHueContrast){
+const minHueContrast = 10
+while (colord(fgLight).isReadable(bgLight)==false)
+{
   if(hueBackground > hueForeground){
     hueBackground+=minHueContrast;
   }
@@ -22,36 +27,20 @@ if (Math.abs(hueBackground - hueForeground) < minHueContrast){
     hueBackground-=minHueContrast;
   }
 }
-//  Random set of bgs
-// const backgroundColoursLight = hues.map(hue => colord({ h: hue, s: 100, l: 50 }).toHex());
-// var bgLight = backgroundColoursLight[Math.floor(Math.random() * backgroundColoursLight.length)] ;
 
-
-
-// if()
-
-var bgLight = colord({ h: hueBackground, s: 100, l: 50 }).toHex();
+// Random set of bgs
+var bgLight = colord({ h: hueBackground, s: 100, l: 60 }).toHex();
 var bgA = bgLight;
 var bgB = colord(bgLight).darken(0.4).saturate(0.1).toHex();
 
-//  Random set of fgs
-// const foregroundColoursLight = hues.map(hue => colord({ h: hue, s: 100, l: 20 }).toHex());;
+// Random set of fgs
 var fgLight = colord({ h: hueForeground, s: 100, l: 20 }).toHex();
-// if(fgLight-)
 var fgA = fgLight;
-// colord(fgLight).lighten(0.4).saturate(1).toHex();
 var fgB = colord(fgLight).lighten(0.5).toHex();
 
-
-// implement harmonies from: https://www.npmjs.com/package/colord
-
-// implement font...
-
-// const backgroundColoursB = ['#ffd900', '#ffd900'];
-// var bgB = backgroundColoursB[Math.floor(Math.random() * backgroundColoursB.length)] ;
-
-// const foregroundColoursB = ['#226600', '#226600'];
-// var fgB = foregroundColoursB[Math.floor(Math.random() * foregroundColoursA.length)];
+//// Implemented harmonies from: https://www.npmjs.com/package/colord
+// var harmony = colord(bgA).harmonies("complementary").map((c) => c.toHex());
+// var fgA = harmony[1];
 
 const theme = merge(tailwind, {
   config: {
