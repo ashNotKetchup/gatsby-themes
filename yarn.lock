@@ -3271,6 +3271,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.49.0
     "@vitest/coverage-c8": ^0.28.2
     c8: ^7.12.0
+    colord: ^2.9.3
     cross-env: ^7.0.3
     cypress: ^12.4.0
     eslint: ^8.32.0
@@ -8014,7 +8015,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colord@npm:^2.9.1":
+"colord@npm:^2.9.1, colord@npm:^2.9.3":
   version: 2.9.3
   resolution: "colord@npm:2.9.3"
   checksum: 95d909bfbcfd8d5605cbb5af56f2d1ce2b323990258fd7c0d2eb0e6d3bb177254d7fb8213758db56bb4ede708964f78c6b992b326615f81a18a6aaf11d64c650

@@ -1,37 +1,99 @@
 import { merge } from "theme-ui"
 import tailwind from "@theme-ui/preset-tailwind"
 import { lightThemeVars, darkThemeVars } from "../utils/prism-themes"
+import { colord } from "colord";
+
+// linspace of hues
+var hues = [];
+for (var i = 0; i < 360; i+=2){
+    hues.push(i);
+}
+
+var hueBackground = Math.floor(Math.random() * 360);
+var hueForeground = Math.floor(Math.random() * 360);
+
+const minHueContrast = 70
+
+if (Math.abs(hueBackground - hueForeground) < minHueContrast){
+  if(hueBackground > hueForeground){
+    hueBackground+=minHueContrast;
+  }
+  else{
+    hueBackground-=minHueContrast;
+  }
+}
+//  Random set of bgs
+// const backgroundColoursLight = hues.map(hue => colord({ h: hue, s: 100, l: 50 }).toHex());
+// var bgLight = backgroundColoursLight[Math.floor(Math.random() * backgroundColoursLight.length)] ;
+
+
+
+// if()
+
+var bgLight = colord({ h: hueBackground, s: 100, l: 50 }).toHex();
+var bgA = bgLight;
+var bgB = colord(bgLight).darken(0.4).saturate(0.1).toHex();
+
+//  Random set of fgs
+// const foregroundColoursLight = hues.map(hue => colord({ h: hue, s: 100, l: 20 }).toHex());;
+var fgLight = colord({ h: hueForeground, s: 100, l: 20 }).toHex();
+// if(fgLight-)
+var fgA = fgLight;
+// colord(fgLight).lighten(0.4).saturate(1).toHex();
+var fgB = colord(fgLight).lighten(0.5).toHex();
+
+
+// implement harmonies from: https://www.npmjs.com/package/colord
+
+// implement font...
+
+// const backgroundColoursB = ['#ffd900', '#ffd900'];
+// var bgB = backgroundColoursB[Math.floor(Math.random() * backgroundColoursB.length)] ;
+
+// const foregroundColoursB = ['#226600', '#226600'];
+// var fgB = foregroundColoursB[Math.floor(Math.random() * foregroundColoursA.length)];
 
 const theme = merge(tailwind, {
   config: {
     initialColorModeName: `light`,
   },
   colors: {
-    primary: tailwind.colors.purple[7],
-    secondary: `#5f6c80`,
-    toggleIcon: tailwind.colors.gray[8],
-    heading: tailwind.colors.black,
-    divide: tailwind.colors.gray[4],
-    muted: tailwind.colors.gray[2],
-    highlightLineBg: `rgba(0, 0, 0, 0.035)`,
+    text: fgA,
+    primary: fgA,
+    secondary: fgA,
+    background: bgA,
+    toggleIcon: fgA,
+    heading: fgA,
+    divide: fgA,
+    muted: fgA,
+    highlightLineBg: fgA,
     ...lightThemeVars,
     modes: {
       dark: {
-        text: tailwind.colors.gray[4],
-        primary: tailwind.colors.purple[4],
-        secondary: `#8a9ab0`,
-        toggleIcon: tailwind.colors.gray[4],
-        background: `#1A202C`,
-        heading: tailwind.colors.white,
-        divide: tailwind.colors.gray[8],
-        muted: tailwind.colors.gray[8],
-        highlightLineBg: `rgba(255, 255, 255, 0.1)`,
+          text: fgB,
+          primary: fgB,
+          secondary: fgB,
+          background: bgB,
+          toggleIcon: fgB,
+          heading: fgB,
+          divide: fgB,
+          muted: fgB,
+          highlightLineBg: fgB,
         ...darkThemeVars,
       },
     },
+    // Combos I like:
+    // BG: #00ffa2, FG: #001f66
+    // BG: #ffd900, FG: #001f66
+    // BG: #ff6200, FG: #226600, or white?
+    // Generally, like text with saturation 1, lightness 0.2, and a BG with sat 1, lightness 0.5.
+    // randomise combos of hues? With some distance param or nah? can i do this based on cookies? so re-visiting user will get the same experience?
   },
   fonts: {
     body: `-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
+    heading: 'Georgia, serif',
+    monospace: 'Menlo, monospace',
+  
   },
   styles: {
     root: {
