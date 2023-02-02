@@ -6,6 +6,9 @@ import a11yPlugin from "colord/plugins/a11y";
 import labPlugin from "colord/plugins/lab";
 import harmonies from "colord/plugins/harmonies";
 
+// import slussen from "../../static/fonts/Slussen-Extended-Black-TRIAL.otf";
+
+// console.log("font: " + slussen);
 extend([a11yPlugin, labPlugin, harmonies]);
 
 // // linspace of hues, unused
@@ -41,6 +44,15 @@ var fgB = colord(fgLight).lighten(0.5).toHex();
 //// Implemented harmonies from: https://www.npmjs.com/package/colord
 // var harmony = colord(bgA).harmonies("complementary").map((c) => c.toHex());
 // var fgA = harmony[1];
+
+// Fonts!
+import "@fontsource/sniglet" // Defaults to weight 400 with all styles included.
+import "@fontsource/junction" // Defaults to weight 400 with all styles included.
+import "@fontsource/raleway" // Defaults to weight 400 with all styles included.
+import "@fontsource/montserrat" // Defaults to weight 400 with all styles included.
+import "@fontsource/apfel-grotezk" // Defaults to weight 400 with all styles included.
+import "@fontsource/anybody/variable-full.css";
+
 
 const theme = merge(tailwind, {
   config: {
@@ -78,12 +90,39 @@ const theme = merge(tailwind, {
     // Generally, like text with saturation 1, lightness 0.2, and a BG with sat 1, lightness 0.5.
     // randomise combos of hues? With some distance param or nah? can i do this based on cookies? so re-visiting user will get the same experience?
   },
+  //try to load variable fonts
+  // anyway, heres a font reminder:
+  // sniglet
+  // junction
+  // raleway
+  // montserrat
+  //apfel-grotezk
+
+  // try:
+  // Roboto Flex
+
+  //Acc running:
+  // anybodyVariable
+  // raleway
+
+
   fonts: {
-    body: `-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
-    heading: 'Georgia, serif',
-    monospace: 'Menlo, monospace',
+    // body: `-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
+    body: `raleway-100, -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
+    heading: `anybodyVariable, sans-serif, -apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"`,
+    siteTitle: `anybodyVariable, "Helvetica Neue", Roboto, sans-serif`
+    // monospace: 'Menlo, monospace',
   
   },
+  fontWeights: {
+        light: 200,
+        regular: 400,
+        medium: 500,
+        bold: 600,
+        heavy: 900,
+    },
+    lineHeights: ["1em", "1.25em", "1.6em"],
+    letterSpacing: ["-0.025em", "0.025em", "0.125em"],
   styles: {
     root: {
       color: `text`,
@@ -94,7 +133,11 @@ const theme = merge(tailwind, {
       textRendering: `optimizeLegibility`,
       WebkitFontSmoothing: `antialiased`,
       MozOsxFontSmoothing: `grayscale`,
+
     },
+    // siteTitle: {
+    //   textTransform: 'uppercase',
+    // },
     p: {
       fontSize: [1, 1, 2],
       letterSpacing: `-0.003em`,
@@ -125,11 +168,13 @@ const theme = merge(tailwind, {
       variant: `text.heading`,
       fontSize: [4, 5, 5, 6],
       mt: 4,
+      
     },
     h2: {
       variant: `text.heading`,
       fontSize: [3, 4, 4, 5],
       mt: 4,
+      
     },
     h3: {
       variant: `text.heading`,
@@ -214,6 +259,7 @@ const theme = merge(tailwind, {
       fontFamily: `heading`,
       fontWeight: `heading`,
       lineHeight: `heading`,
+      textTransform: 'uppercase',
       color: `heading`,
     },
   },

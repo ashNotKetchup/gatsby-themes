@@ -24,7 +24,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} by {siteTitle}. All rights reserved.
       </div>
       <div>
-        <Link
+        {/* <Link
           aria-label="Link to the theme's GitHub repository"
           href="https://github.com/LekoArts/gatsby-themes/tree/main/themes/gatsby-theme-minimal-blog"
         >
@@ -38,7 +38,7 @@ const Footer = () => {
           href="https://www.lekoarts.de?utm_source=minimal-blog&utm_medium=Theme"
         >
           LekoArts
-        </Link>
+        </Link> */}
       </div>
     </footer>
   )
