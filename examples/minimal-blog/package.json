@@ -28,8 +28,11 @@
     "gatsby-plugin-manifest": "^5.5.0",
     "gatsby-plugin-sitemap": "^6.5.0",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.30",
+    "gatsby-remark-autolink-headers": "^6.5.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-slug": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

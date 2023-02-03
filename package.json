@@ -84,6 +84,8 @@
   "dependencies": {
     "colord": "^2.9.3",
     "gatsby-omni-font-loader": "^2.0.2",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-slug": "^5.1.0"
   }
 }

@@ -1,5 +1,14 @@
 const remarkGfm = require(`remark-gfm`)
 const remarkFootnotes = require(`remark-footnotes`)
+
+
+//Need to add these plugins somehow
+// const rehypeSlug = require(`rehype-slug`)
+// const rehypeAutolinkHeadings = require(`rehype-autolink-headings`)
+
+// import rehypeSlug from 'rehype-slug'
+// import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+
 const { rehypeMetaAsAttributes } = require(`@lekoarts/rehype-meta-as-attributes`)
 const withDefaults = require(`./utils/default-options`)
 
@@ -34,7 +43,11 @@ module.exports = (themeOptions) => {
         options: {
           mdxOptions: {
             remarkPlugins: [remarkGfm, remarkFootnotes],
-            rehypePlugins: [rehypeMetaAsAttributes],
+            rehypePlugins: [rehypeMetaAsAttributes] 
+            // rehypeSlug, rehypeAutolinkHeadings]
+      // // To pass options, use a 2-element array with the
+      // // configuration in an object in the second element
+      // rehypeAutolinkHeadings]
           },
           extensions: [`.mdx`, `.md`],
           gatsbyRemarkPlugins: [
